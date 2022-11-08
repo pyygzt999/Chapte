@@ -1,0 +1,9 @@
+﻿  BthServer.cpp
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(78,6): warning C4996: '_WSAQuerySetA::dwSize': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(79,6): warning C4996: '_WSAQuerySetA::lpszServiceInstanceName': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(80,6): warning C4996: '_WSAQuerySetA::lpServiceClassId': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(81,6): warning C4996: '_WSAQuerySetA::dwNameSpace': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(82,6): warning C4996: '_WSAQuerySetA::dwNumberOfCsAddrs': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(83,6): warning C4996: '_WSAQuerySetA::lpcsaBuffer': Use WSAQUERYSETW instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\BthServer.cpp(84,11): warning C4996: 'WSASetServiceA': Use WSASetServiceW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  BthServer.vcxproj -> E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthServer\Debug\BthServer.exe
