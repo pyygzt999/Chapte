@@ -30,15 +30,15 @@ int main(int argc, char *argv[])
 	DCB dcb;
 	if(!GetCommState(hComm, &dcb)) err_quit("GetCommState()");
 
-	// Á÷·Ä Æ÷Æ® ¼³Á¤°ª º¯°æÇÏ±â
-	dcb.BaudRate = CBR_57600;
+	
+	dcb.BaudRate = CBR_19200;
 	dcb.ByteSize = 8;
 	dcb.fParity = FALSE;
 	dcb.Parity = NOPARITY;
 	dcb.StopBits = ONESTOPBIT;
 	if(!SetCommState(hComm, &dcb)) err_quit("SetCommState()");
 
-	// ÀĞ±â¿Í ¾²±â Å¸ÀÓ¾Æ¿ô ¼³Á¤ÇÏ±â
+	
 	COMMTIMEOUTS timeouts;
 	timeouts.ReadIntervalTimeout = 0;
 	timeouts.ReadTotalTimeoutMultiplier = 0;
@@ -47,26 +47,25 @@ int main(int argc, char *argv[])
 	timeouts.WriteTotalTimeoutConstant = 0;
 	if(!SetCommTimeouts(hComm, &timeouts)) err_quit("SetCommTimeouts()");
 
-	// µ¥ÀÌÅÍ Åë½Å¿¡ »ç¿ëÇÒ º¯¼ö
+	
 	char buf[BUFSIZE+1];
 	DWORD BytesRead, BytesWritten;
 
-	// Å¬¶óÀÌ¾ğÆ®¿Í µ¥ÀÌÅÍ Åë½Å
+	//ÉèÖÃÒ»¸öÑ­»·£¬²»¶Ï¼àÌı¿Í»§¶ËµÄĞÅÏ¢
 	while(1){
-		// µ¥ÀÌÅÍ ¹Ş±â
+		
 		retval = ReadFile(hComm, buf, BUFSIZE, &BytesRead, NULL);
 		if(retval == 0) err_quit("ReadFile()");
 
-		// ¹ŞÀº µ¥ÀÌÅÍ Ãâ·Â
+		
 		buf[BytesRead] = '\0';
 		printf("[¹ŞÀº µ¥ÀÌÅÍ] %s\n", buf);
 
-		// µ¥ÀÌÅÍ º¸³»±â
+		
 		retval = WriteFile(hComm, buf, BUFSIZE, &BytesWritten, NULL);
 		if(retval == 0) err_quit("WriteFile()");
 	}
 
-	// Á÷·Ä Æ÷Æ® ´İ±â
 	CloseHandle(hComm);
 	return 0;
 }

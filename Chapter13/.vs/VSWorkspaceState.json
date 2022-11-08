@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BthClient",
+    "\\BthDeviceSearch",
+    "\\BthServer",
+    "\\CommClient",
+    "\\CommServer"
+  ],
+  "SelectedNode": "\\CommServer\\CommServer.cpp",
+  "PreviewInSolutionExplorer": false
+}

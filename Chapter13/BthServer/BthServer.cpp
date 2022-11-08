@@ -10,7 +10,7 @@
 DEFINE_GUID(BthServer_Service, 0x4672de25, 0x588d, 0x48af,
 	0x80, 0x73, 0x5f, 0x2b, 0x7b, 0x0, 0x60, 0x1f);
 
-// 소켓 함수 오류 출력 후 종료
+
 void err_quit(char *msg)
 {
 	LPVOID lpMsgBuf;
@@ -24,7 +24,7 @@ void err_quit(char *msg)
 	exit(1);
 }
 
-// 소켓 함수 오류 출력
+
 void err_display(char *msg)
 {
 	LPVOID lpMsgBuf;
@@ -41,15 +41,15 @@ int main(int argc, char *argv[])
 {
 	int retval;
 
-	// 윈속 초기화
+	
 	WSADATA wsa;
 	if(WSAStartup(MAKEWORD(2,2), &wsa) != 0) return 1;
 
-	// socket()
+	
 	SOCKET listen_sock = socket(AF_BTH, SOCK_STREAM, BTHPROTO_RFCOMM);
 	if(listen_sock == INVALID_SOCKET) err_quit("socket()");
 
-	// bind()
+	
 	SOCKADDR_BTH serveraddr;
 	ZeroMemory(&serveraddr, sizeof(serveraddr));
 	serveraddr.addressFamily = AF_BTH;
@@ -58,13 +58,13 @@ int main(int argc, char *argv[])
 	retval = bind(listen_sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
 	if(retval == SOCKET_ERROR) err_quit("bind()");
 
-	// 서버 포트 번호 출력(옵션)
+	
 	int addrlen = sizeof(serveraddr);
 	retval = getsockname(listen_sock, (SOCKADDR *)&serveraddr, &addrlen);
 	if(retval == SOCKET_ERROR) err_quit("bind()");
 	printf("[블루투스 서버] 사용 중인 포트 번호 : %d\n", serveraddr.port);
 
-	// 서버 정보 등록(필수)
+	
 	CSADDR_INFO addrinfo;
 	addrinfo.LocalAddr.lpSockaddr = (SOCKADDR *)&serveraddr;
 	addrinfo.LocalAddr.iSockaddrLength = sizeof(serveraddr);
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 	retval = listen(listen_sock, 1);
 	if(retval == SOCKET_ERROR) err_quit("listen()");
 
-	// 데이터 통신에 사용할 변수
+	
 	SOCKET client_sock;
 	SOCKADDR_BTH clientaddr;
 	char buf[BUFSIZE+1];
@@ -104,9 +104,9 @@ int main(int argc, char *argv[])
 
 		printf("\n[블루투스 서버] 클라이언트 접속!\n");
 
-		// 클라이언트와 데이터 통신
+		
 		while(1){
-			// 데이터 받기
+			
 			retval = recv(client_sock, buf, BUFSIZE, 0);
 			if(retval == SOCKET_ERROR){
 				err_display("recv()");
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 			else if(retval == 0)
 				break;
 
-			// 받은 데이터 출력
+			
 			buf[retval] = '\0';
 			printf("[블루투스 서버] %s\n", buf);
 		}
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 	// closesocket()
 	closesocket(listen_sock);
 
-	// 윈속 종료
+	
 	WSACleanup();
 	return 0;
 }
