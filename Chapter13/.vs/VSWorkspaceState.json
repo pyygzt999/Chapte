@@ -7,6 +7,6 @@
     "\\CommClient",
     "\\CommServer"
   ],
-  "SelectedNode": "\\CommServer\\CommServer.cpp",
+  "SelectedNode": "\\BthClient\\BthClient.cpp",
   "PreviewInSolutionExplorer": false
 }

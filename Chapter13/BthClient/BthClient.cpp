@@ -1,3 +1,12 @@
+/**
+* 蓝牙客户端通信基本流程：
+* 1、创建客户端蓝牙Sokcet
+* 2、创建连接
+* 3、读写数据
+* 4、关闭
+*/
+
+
 #pragma comment(lib, "ws2_32")
 #include <winsock2.h>
 #include <ws2bth.h>
@@ -42,14 +51,15 @@ int main(int argc, char *argv[])
 {
 	int retval;
 
-	
+	/*与所有Windows套接字应用程序编程一样，
+	必须调用 WSAStartup 函数来启动Windows套接字功能并启用蓝牙*/
 	WSADATA wsa;
 	if(WSAStartup(MAKEWORD(2,2), &wsa) != 0) return 1;
 
-
-	DWORD qslen = sizeof(WSAQUERYSET);
-	WSAQUERYSET *qs = (WSAQUERYSET *)malloc(qslen);
-	ZeroMemory(qs, qslen);
+	/*	WSAQUERYSET 结构用于操作，包括设备查询、服务查询和设置服务。*/
+	DWORD qslen = sizeof(WSAQUERYSET);//获取一个 WSAQUERYSET 的大小
+	WSAQUERYSET *qs = (WSAQUERYSET *)malloc(qslen);//用一个结构体指针指向 WSAQUERYSET
+	ZeroMemory(qs, qslen);//初始化
 	qs->dwSize = qslen;
 	qs->dwNameSpace = NS_BTH;
 	qs->lpServiceClassId = (GUID *)&BthServer_Service;
@@ -60,7 +70,7 @@ int main(int argc, char *argv[])
 	HANDLE hLookup;
 	retval = WSALookupServiceBegin(qs, flags, &hLookup);
 	if(retval == SOCKET_ERROR){
-		printf("[坷幅] 惯斑等 喉风捧胶 厘摹 绝澜!\n");
+		printf("错误！！\n");
 		exit(1);
 	}
 
@@ -68,6 +78,7 @@ int main(int argc, char *argv[])
 	SOCKADDR_BTH *sa = NULL;
 	int serverport = 0;
 	bool done = false;
+
 	while(!done){
 		retval = WSALookupServiceNext(hLookup, flags, &qslen, qs);
 		if(retval == NO_ERROR){
@@ -88,11 +99,11 @@ int main(int argc, char *argv[])
 		}
 	}
 	if(sa == NULL){
-		printf("[坷幅] 喉风捧胶 厘摹(%s)俊辑 角青 吝牢 辑滚 绝澜!\n", SERVERADDR);
+		printf("错误！！\n", SERVERADDR);
 		exit(1);
 	}
 
-	// 喉风捧胶 辑厚胶 八祸 辆丰
+	
 	WSALookupServiceEnd(hLookup);
 	free(qs);
 

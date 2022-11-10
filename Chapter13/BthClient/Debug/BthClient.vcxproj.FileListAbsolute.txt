@@ -1,2 +1,3 @@
 E:\微信文件\WeChat Files\wxid_yk8a4nyjfxqp22\FileStorage\File\2022-11\Chapter13\BthClient\Debug\BthClient.exe
 C:\Users\Administrator\Desktop\Chapter13\BthClient\Debug\BthClient.exe
+G:\VS 2019 工作空间\Chapte\Chapter13\BthClient\Debug\BthClient.exe

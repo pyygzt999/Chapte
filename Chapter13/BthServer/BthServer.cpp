@@ -1,3 +1,13 @@
+/**
+* 蓝牙服务器端通信的基本流程：
+* 1、创建服务端蓝牙Socket
+* 2、绑定端口号（蓝牙忽略）
+* 3、创建监听listen（蓝牙忽略, 蓝牙没有此监听，而是通过whlie（true）死循环来一直监听的）
+* 4、通过accept()，如果有客户端连接，会创建一个新的Socket，体现出并发性，可以同时与多个socket通讯）
+* 5、读写数据
+* 6、关闭
+*/
+
 #pragma comment(lib, "ws2_32")
 #include <winsock2.h>
 #include <ws2bth.h>
